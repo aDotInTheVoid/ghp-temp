@@ -1,0 +1,14 @@
+
+        digraph {
+            rankdir=LR;
+            graph [fontname="Courier, monospace"];
+            node [fontname="Courier, monospace"];
+            edge [fontname="Courier, monospace"];
+            labelloc="t";
+            label="Read Var n";
+            bb_0[shape="none", label=<<table border="0" cellborder="1" cellspacing="0"><tr><td bgcolor="green" align="center" colspan="1">0 ←[]</td></tr><tr><td align="left" balign="left">%cur_1 = 1<br/>%prev_2 = 0<br/>%n_3 = 10<br/></td></tr><tr><td align="left">GOTO 1</td></tr></table>>];
+bb_0 -> bb_1;
+bb_1[shape="none", label=<<table border="0" cellborder="1" cellspacing="0"><tr><td bgcolor="gray" align="center" colspan="1">1</td></tr><tr><td align="left" balign="left">%n_5 = ψ(n)<br/>%6 = 0<br/>%4 = %n_5 NE %6<br/>%prev_8 = ψ(cur)<br/>%prev_9 = ψ(prev)<br/></td></tr><tr><td align="left">???</td></tr></table>>];
+bb_2[shape="none", label=<<table border="0" cellborder="1" cellspacing="0"><tr><td bgcolor="green" align="center" colspan="1">2 ←[1]</td></tr><tr><td align="left" balign="left">%cur_7 = %prev_8 ADD %prev_9<br/></td></tr><tr><td align="left">???</td></tr></table>>];
+
+}
