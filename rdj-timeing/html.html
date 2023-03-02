@@ -1,0 +1,4570 @@
+
+<html>
+<head>
+  <title>Cargo Build Timings — stm32f0xx-hal 0.18.0</title>
+  <meta charset="utf-8">
+<style type="text/css">
+html {
+  font-family: sans-serif;
+}
+
+.canvas-container {
+  position: relative;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+h1 {
+  border-bottom: 1px solid #c0c0c0;
+}
+
+.graph {
+  display: block;
+}
+
+.my-table {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-collapse: collapse;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.my-table th {
+  color: #d5dde5;
+  background: #1b1e24;
+  border-bottom: 4px solid #9ea7af;
+  border-right: 1px solid #343a45;
+  font-size: 18px;
+  font-weight: 100;
+  padding: 12px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.my-table th:first-child {
+  border-top-left-radius: 3px;
+}
+
+.my-table th:last-child {
+  border-top-right-radius: 3px;
+  border-right:none;
+}
+
+.my-table tr {
+  border-top: 1px solid #c1c3d1;
+  border-bottom: 1px solid #c1c3d1;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.my-table tr:first-child {
+  border-top:none;
+}
+
+.my-table tr:last-child {
+  border-bottom:none;
+}
+
+.my-table tr:nth-child(odd) td {
+  background: #ebebeb;
+}
+
+.my-table tr:last-child td:first-child {
+  border-bottom-left-radius:3px;
+}
+
+.my-table tr:last-child td:last-child {
+  border-bottom-right-radius:3px;
+}
+
+.my-table td {
+  background: #ffffff;
+  padding: 10px;
+  text-align: left;
+  vertical-align: middle;
+  font-weight: 300;
+  font-size: 14px;
+  border-right: 1px solid #C1C3D1;
+}
+
+.my-table td:last-child {
+  border-right: 0px;
+}
+
+.summary-table td:first-child {
+  vertical-align: top;
+  text-align: right;
+}
+
+.input-table td {
+  text-align: center;
+}
+
+.error-text {
+  color: #e80000;
+}
+
+</style>
+</head>
+<body>
+
+<h1>Cargo Build Timings</h1>
+See <a href="https://doc.rust-lang.org/nightly/cargo/reference/timings.html">Documentation</a>
+
+<table class="my-table summary-table">
+  <tr>
+    <td>Targets:</td><td>stm32f0xx-hal 0.18.0 (lib)</td>
+  </tr>
+  <tr>
+    <td>Profile:</td><td>dev</td>
+  </tr>
+  <tr>
+    <td>Fresh units:</td><td>0</td>
+  </tr>
+  <tr>
+    <td>Dirty units:</td><td>48</td>
+  </tr>
+  <tr>
+    <td>Total units:</td><td>48</td>
+  </tr>
+  <tr>
+    <td>Max concurrency:</td><td>12 (jobs=12 ncpu=12)</td>
+  </tr>
+  <tr>
+    <td>Build start:</td><td>2023-03-02T13:03:42Z</td>
+  </tr>
+  <tr>
+    <td>Total time:</td><td>90.0s (1m 30.0s)</td>
+  </tr>
+  <tr>
+    <td>rustc:</td><td>rustc 1.69.0-nightly (f77bfb733 2023-03-01)<br>Host: x86_64-unknown-linux-gnu<br>Target: thumbv6m-none-eabi</td>
+  </tr>
+  <tr>
+    <td>Max (global) rustc threads concurrency:</td><td>0</td>
+  </tr>
+
+</table>
+
+<table class="input-table">
+  <tr>
+    <td><label for="min-unit-time">Min unit time:</label></td>
+    <td><label for="scale">Scale:</label></td>
+  </tr>
+  <tr>
+    <td><input type="range" min="0" max="30" step="0.1" value="0" id="min-unit-time"></td>
+    <td><input type="range" min="1" max="50" value="20" id="scale"></td>
+  </tr>
+  <tr>
+    <td><output for="min-unit-time" id="min-unit-time-output"></output></td>
+    <td><output for="scale" id="scale-output"></output></td>
+  </tr>
+</table>
+
+<div id="pipeline-container" class="canvas-container">
+ <canvas id="pipeline-graph" class="graph" style="position: absolute; left: 0; top: 0; z-index: 0;"></canvas>
+ <canvas id="pipeline-graph-lines" style="position: absolute; left: 0; top: 0; z-index: 1; pointer-events:none;"></canvas>
+</div>
+<div class="canvas-container">
+  <canvas id="timing-graph" class="graph"></canvas>
+</div>
+
+<table class="my-table">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Unit</th>
+      <th>Total</th>
+      <th>Codegen</th>
+      <th>Features</th>
+    </tr>
+  </thead>
+  <tbody>
+
+<tr>
+  <td>1.</td>
+  <td>stm32f0xx-hal v0.18.0 lib (doc)</td>
+  <td>69.8s</td>
+  <td></td>
+  <td>device-selected, rt, stm32-usbd, stm32f042</td>
+</tr>
+
+<tr>
+  <td>2.</td>
+  <td>stm32f0 v0.14.0 lib (check)</td>
+  <td>9.8s</td>
+  <td>0.1s (1%)</td>
+  <td>cortex-m-rt, default, rt, stm32f0x2</td>
+</tr>
+
+<tr>
+  <td>3.</td>
+  <td>syn v1.0.109</td>
+  <td>5.8s</td>
+  <td>1.9s (33%)</td>
+  <td>clone-impls, default, derive, extra-traits, full, parsing, printing, proc-macro, quote</td>
+</tr>
+
+<tr>
+  <td>4.</td>
+  <td>cortex-m-rt-macros v0.7.0</td>
+  <td>1.6s</td>
+  <td></td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>5.</td>
+  <td>proc-macro2 v1.0.51 build script</td>
+  <td>1.5s</td>
+  <td></td>
+  <td>default, proc-macro</td>
+</tr>
+
+<tr>
+  <td>6.</td>
+  <td>syn v1.0.109 build script</td>
+  <td>1.5s</td>
+  <td></td>
+  <td>clone-impls, default, derive, extra-traits, full, parsing, printing, proc-macro, quote</td>
+</tr>
+
+<tr>
+  <td>7.</td>
+  <td>quote v1.0.23 build script</td>
+  <td>1.4s</td>
+  <td></td>
+  <td>default, proc-macro</td>
+</tr>
+
+<tr>
+  <td>8.</td>
+  <td>cortex-m-rt v0.7.3 build script</td>
+  <td>1.4s</td>
+  <td></td>
+  <td>device</td>
+</tr>
+
+<tr>
+  <td>9.</td>
+  <td>semver v1.0.16 build script</td>
+  <td>1.4s</td>
+  <td></td>
+  <td>default, std</td>
+</tr>
+
+<tr>
+  <td>10.</td>
+  <td>semver-parser v0.7.0</td>
+  <td>1.3s</td>
+  <td>0.8s (62%)</td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>11.</td>
+  <td>cortex-m v0.7.7 build script</td>
+  <td>1.3s</td>
+  <td></td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>12.</td>
+  <td>stm32f0 v0.14.0 build script</td>
+  <td>1.0s</td>
+  <td></td>
+  <td>cortex-m-rt, default, rt, stm32f0x2</td>
+</tr>
+
+<tr>
+  <td>13.</td>
+  <td>bxcan v0.6.2 lib (check)</td>
+  <td>1.0s</td>
+  <td>0.0s (1%)</td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>14.</td>
+  <td>semver v0.9.0</td>
+  <td>1.0s</td>
+  <td>0.2s (16%)</td>
+  <td>default</td>
+</tr>
+
+<tr>
+  <td>15.</td>
+  <td>stm32-usbd v0.6.0 build script</td>
+  <td>1.0s</td>
+  <td></td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>16.</td>
+  <td>proc-macro2 v1.0.51</td>
+  <td>1.0s</td>
+  <td>0.3s (33%)</td>
+  <td>default, proc-macro</td>
+</tr>
+
+<tr>
+  <td>17.</td>
+  <td>usb-device v0.2.9 lib (check)</td>
+  <td>0.6s</td>
+  <td>0.0s (4%)</td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>18.</td>
+  <td>bitfield v0.13.2 lib (check)</td>
+  <td>0.6s</td>
+  <td>0.0s (4%)</td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>19.</td>
+  <td>semver v1.0.16</td>
+  <td>0.5s</td>
+  <td>0.1s (27%)</td>
+  <td>default, std</td>
+</tr>
+
+<tr>
+  <td>20.</td>
+  <td>bare-metal v0.2.5 build script</td>
+  <td>0.5s</td>
+  <td></td>
+  <td>const-fn</td>
+</tr>
+
+<tr>
+  <td>21.</td>
+  <td>cast v0.2.7 build script</td>
+  <td>0.5s</td>
+  <td></td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>22.</td>
+  <td>stm32-usbd v0.6.0 lib (check)</td>
+  <td>0.5s</td>
+  <td>0.0s (2%)</td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>23.</td>
+  <td>rustc_version v0.4.0</td>
+  <td>0.5s</td>
+  <td>0.2s (40%)</td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>24.</td>
+  <td>embedded-hal v0.2.7 lib (check)</td>
+  <td>0.4s</td>
+  <td>0.0s (3%)</td>
+  <td>unproven</td>
+</tr>
+
+<tr>
+  <td>25.</td>
+  <td>quote v1.0.23</td>
+  <td>0.4s</td>
+  <td>0.1s (28%)</td>
+  <td>default, proc-macro</td>
+</tr>
+
+<tr>
+  <td>26.</td>
+  <td>rustc_version v0.2.3</td>
+  <td>0.3s</td>
+  <td>0.1s (36%)</td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>27.</td>
+  <td>void v1.0.2 lib (check)</td>
+  <td>0.3s</td>
+  <td>0.0s (4%)</td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>28.</td>
+  <td>unicode-ident v1.0.6</td>
+  <td>0.3s</td>
+  <td>0.1s (24%)</td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>29.</td>
+  <td>nb v1.0.0 lib (check)</td>
+  <td>0.3s</td>
+  <td>0.0s (4%)</td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>30.</td>
+  <td>bare-metal v1.0.0 lib (check)</td>
+  <td>0.3s</td>
+  <td>0.0s (8%)</td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>31.</td>
+  <td>volatile-register v0.2.1 lib (check)</td>
+  <td>0.2s</td>
+  <td>0.0s (5%)</td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>32.</td>
+  <td>cortex-m v0.7.7 lib (check)</td>
+  <td>0.2s</td>
+  <td>0.0s (3%)</td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>33.</td>
+  <td>vcell v0.1.3 lib (check)</td>
+  <td>0.2s</td>
+  <td>0.0s (16%)</td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>34.</td>
+  <td>bitflags v1.3.2 lib (check)</td>
+  <td>0.2s</td>
+  <td>0.0s (6%)</td>
+  <td>default</td>
+</tr>
+
+<tr>
+  <td>35.</td>
+  <td>cast v0.2.7 lib (check)</td>
+  <td>0.2s</td>
+  <td>0.0s (4%)</td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>36.</td>
+  <td>nb v0.1.3 lib (check)</td>
+  <td>0.2s</td>
+  <td>0.0s (9%)</td>
+  <td>unstable</td>
+</tr>
+
+<tr>
+  <td>37.</td>
+  <td>bare-metal v0.2.5 lib (check)</td>
+  <td>0.1s</td>
+  <td>0.0s (6%)</td>
+  <td>const-fn</td>
+</tr>
+
+<tr>
+  <td>38.</td>
+  <td>quote v1.0.23 build script (run)</td>
+  <td>0.1s</td>
+  <td></td>
+  <td>default, proc-macro</td>
+</tr>
+
+<tr>
+  <td>39.</td>
+  <td>semver v1.0.16 build script (run)</td>
+  <td>0.1s</td>
+  <td></td>
+  <td>default, std</td>
+</tr>
+
+<tr>
+  <td>40.</td>
+  <td>bare-metal v0.2.5 build script (run)</td>
+  <td>0.1s</td>
+  <td></td>
+  <td>const-fn</td>
+</tr>
+
+<tr>
+  <td>41.</td>
+  <td>cortex-m-rt v0.7.3 lib (check)</td>
+  <td>0.1s</td>
+  <td>0.0s (6%)</td>
+  <td>device</td>
+</tr>
+
+<tr>
+  <td>42.</td>
+  <td>proc-macro2 v1.0.51 build script (run)</td>
+  <td>0.1s</td>
+  <td></td>
+  <td>default, proc-macro</td>
+</tr>
+
+<tr>
+  <td>43.</td>
+  <td>cast v0.2.7 build script (run)</td>
+  <td>0.1s</td>
+  <td></td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>44.</td>
+  <td>syn v1.0.109 build script (run)</td>
+  <td>0.1s</td>
+  <td></td>
+  <td>clone-impls, default, derive, extra-traits, full, parsing, printing, proc-macro, quote</td>
+</tr>
+
+<tr>
+  <td>45.</td>
+  <td>cortex-m v0.7.7 build script (run)</td>
+  <td>0.0s</td>
+  <td></td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>46.</td>
+  <td>stm32-usbd v0.6.0 build script (run)</td>
+  <td>0.0s</td>
+  <td></td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>47.</td>
+  <td>cortex-m-rt v0.7.3 build script (run)</td>
+  <td>0.0s</td>
+  <td></td>
+  <td>device</td>
+</tr>
+
+<tr>
+  <td>48.</td>
+  <td>stm32f0 v0.14.0 build script (run)</td>
+  <td>0.0s</td>
+  <td></td>
+  <td>cortex-m-rt, default, rt, stm32f0x2</td>
+</tr>
+</tbody>
+</table>
+<script>
+DURATION = 91;
+const UNIT_DATA = [
+  {
+    "i": 0,
+    "name": "semver-parser",
+    "version": "0.7.0",
+    "mode": "todo",
+    "target": "",
+    "start": 0.37,
+    "duration": 1.32,
+    "rmeta_time": 0.5,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": [
+      17
+    ]
+  },
+  {
+    "i": 1,
+    "name": "proc-macro2",
+    "version": "1.0.51",
+    "mode": "todo",
+    "target": " build script",
+    "start": 0.37,
+    "duration": 1.51,
+    "rmeta_time": null,
+    "unlocked_units": [
+      30
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 2,
+    "name": "cortex-m",
+    "version": "0.7.7",
+    "mode": "todo",
+    "target": " build script",
+    "start": 0.37,
+    "duration": 1.26,
+    "rmeta_time": null,
+    "unlocked_units": [
+      22
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 3,
+    "name": "semver",
+    "version": "1.0.16",
+    "mode": "todo",
+    "target": " build script",
+    "start": 0.37,
+    "duration": 1.35,
+    "rmeta_time": null,
+    "unlocked_units": [
+      25
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 4,
+    "name": "vcell",
+    "version": "0.1.3",
+    "mode": "todo",
+    "target": " lib (check)",
+    "start": 0.37,
+    "duration": 0.21,
+    "rmeta_time": 0.18,
+    "unlocked_units": [
+      12
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 5,
+    "name": "unicode-ident",
+    "version": "1.0.6",
+    "mode": "todo",
+    "target": "",
+    "start": 0.39,
+    "duration": 0.34,
+    "rmeta_time": 0.26,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 6,
+    "name": "quote",
+    "version": "1.0.23",
+    "mode": "todo",
+    "target": " build script",
+    "start": 0.39,
+    "duration": 1.37,
+    "rmeta_time": null,
+    "unlocked_units": [
+      26
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 7,
+    "name": "void",
+    "version": "1.0.2",
+    "mode": "todo",
+    "target": " lib (check)",
+    "start": 0.39,
+    "duration": 0.34,
+    "rmeta_time": 0.33,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 8,
+    "name": "bitfield",
+    "version": "0.13.2",
+    "mode": "todo",
+    "target": " lib (check)",
+    "start": 0.39,
+    "duration": 0.57,
+    "rmeta_time": 0.55,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 9,
+    "name": "syn",
+    "version": "1.0.109",
+    "mode": "todo",
+    "target": " build script",
+    "start": 0.4,
+    "duration": 1.49,
+    "rmeta_time": null,
+    "unlocked_units": [
+      31
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 10,
+    "name": "nb",
+    "version": "1.0.0",
+    "mode": "todo",
+    "target": " lib (check)",
+    "start": 0.4,
+    "duration": 0.32,
+    "rmeta_time": 0.3,
+    "unlocked_units": [
+      13
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 11,
+    "name": "cortex-m-rt",
+    "version": "0.7.3",
+    "mode": "todo",
+    "target": " build script",
+    "start": 0.4,
+    "duration": 1.36,
+    "rmeta_time": null,
+    "unlocked_units": [
+      27
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 12,
+    "name": "volatile-register",
+    "version": "0.2.1",
+    "mode": "todo",
+    "target": " lib (check)",
+    "start": 0.58,
+    "duration": 0.24,
+    "rmeta_time": 0.23,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 13,
+    "name": "nb",
+    "version": "0.1.3",
+    "mode": "todo",
+    "target": " lib (check)",
+    "start": 0.72,
+    "duration": 0.17,
+    "rmeta_time": 0.16,
+    "unlocked_units": [
+      18
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 14,
+    "name": "stm32-usbd",
+    "version": "0.6.0",
+    "mode": "todo",
+    "target": " build script",
+    "start": 0.74,
+    "duration": 0.97,
+    "rmeta_time": null,
+    "unlocked_units": [
+      23
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 15,
+    "name": "stm32f0",
+    "version": "0.14.0",
+    "mode": "todo",
+    "target": " build script",
+    "start": 0.74,
+    "duration": 1.03,
+    "rmeta_time": null,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 16,
+    "name": "bare-metal",
+    "version": "1.0.0",
+    "mode": "todo",
+    "target": " lib (check)",
+    "start": 0.82,
+    "duration": 0.26,
+    "rmeta_time": 0.24,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 17,
+    "name": "semver",
+    "version": "0.9.0",
+    "mode": "todo",
+    "target": "",
+    "start": 0.89,
+    "duration": 0.99,
+    "rmeta_time": 0.82,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": [
+      24
+    ]
+  },
+  {
+    "i": 18,
+    "name": "embedded-hal",
+    "version": "0.2.7",
+    "mode": "todo",
+    "target": " lib (check)",
+    "start": 0.96,
+    "duration": 0.45,
+    "rmeta_time": 0.43,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 19,
+    "name": "bitflags",
+    "version": "1.3.2",
+    "mode": "todo",
+    "target": " lib (check)",
+    "start": 1.08,
+    "duration": 0.2,
+    "rmeta_time": 0.19,
+    "unlocked_units": [
+      21
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 20,
+    "name": "usb-device",
+    "version": "0.2.9",
+    "mode": "todo",
+    "target": " lib (check)",
+    "start": 1.29,
+    "duration": 0.57,
+    "rmeta_time": 0.54,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 21,
+    "name": "bxcan",
+    "version": "0.6.2",
+    "mode": "todo",
+    "target": " lib (check)",
+    "start": 1.41,
+    "duration": 1.03,
+    "rmeta_time": 1.02,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 22,
+    "name": "cortex-m",
+    "version": "0.7.7",
+    "mode": "run-custom-build",
+    "target": " build script (run)",
+    "start": 1.63,
+    "duration": 0.0,
+    "rmeta_time": null,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 23,
+    "name": "stm32-usbd",
+    "version": "0.6.0",
+    "mode": "run-custom-build",
+    "target": " build script (run)",
+    "start": 1.71,
+    "duration": 0.0,
+    "rmeta_time": null,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 24,
+    "name": "rustc_version",
+    "version": "0.2.3",
+    "mode": "todo",
+    "target": "",
+    "start": 1.71,
+    "duration": 0.34,
+    "rmeta_time": 0.22,
+    "unlocked_units": [
+      33
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 25,
+    "name": "semver",
+    "version": "1.0.16",
+    "mode": "run-custom-build",
+    "target": " build script (run)",
+    "start": 1.72,
+    "duration": 0.12,
+    "rmeta_time": null,
+    "unlocked_units": [
+      29
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 26,
+    "name": "quote",
+    "version": "1.0.23",
+    "mode": "run-custom-build",
+    "target": " build script (run)",
+    "start": 1.76,
+    "duration": 0.12,
+    "rmeta_time": null,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 27,
+    "name": "cortex-m-rt",
+    "version": "0.7.3",
+    "mode": "run-custom-build",
+    "target": " build script (run)",
+    "start": 1.77,
+    "duration": 0.0,
+    "rmeta_time": null,
+    "unlocked_units": [
+      28
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 28,
+    "name": "stm32f0",
+    "version": "0.14.0",
+    "mode": "run-custom-build",
+    "target": " build script (run)",
+    "start": 1.77,
+    "duration": 0.0,
+    "rmeta_time": null,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 29,
+    "name": "semver",
+    "version": "1.0.16",
+    "mode": "todo",
+    "target": "",
+    "start": 1.84,
+    "duration": 0.54,
+    "rmeta_time": 0.4,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": [
+      34
+    ]
+  },
+  {
+    "i": 30,
+    "name": "proc-macro2",
+    "version": "1.0.51",
+    "mode": "run-custom-build",
+    "target": " build script (run)",
+    "start": 1.88,
+    "duration": 0.08,
+    "rmeta_time": null,
+    "unlocked_units": [
+      32
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 31,
+    "name": "syn",
+    "version": "1.0.109",
+    "mode": "run-custom-build",
+    "target": " build script (run)",
+    "start": 1.89,
+    "duration": 0.08,
+    "rmeta_time": null,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 32,
+    "name": "proc-macro2",
+    "version": "1.0.51",
+    "mode": "todo",
+    "target": "",
+    "start": 1.97,
+    "duration": 0.96,
+    "rmeta_time": 0.64,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": [
+      36
+    ]
+  },
+  {
+    "i": 33,
+    "name": "bare-metal",
+    "version": "0.2.5",
+    "mode": "todo",
+    "target": " build script",
+    "start": 2.06,
+    "duration": 0.54,
+    "rmeta_time": null,
+    "unlocked_units": [
+      35
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 34,
+    "name": "rustc_version",
+    "version": "0.4.0",
+    "mode": "todo",
+    "target": "",
+    "start": 2.24,
+    "duration": 0.47,
+    "rmeta_time": 0.28,
+    "unlocked_units": [
+      37
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 35,
+    "name": "bare-metal",
+    "version": "0.2.5",
+    "mode": "run-custom-build",
+    "target": " build script (run)",
+    "start": 2.6,
+    "duration": 0.11,
+    "rmeta_time": null,
+    "unlocked_units": [
+      38
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 36,
+    "name": "quote",
+    "version": "1.0.23",
+    "mode": "todo",
+    "target": "",
+    "start": 2.61,
+    "duration": 0.44,
+    "rmeta_time": 0.32,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": [
+      40
+    ]
+  },
+  {
+    "i": 37,
+    "name": "cast",
+    "version": "0.2.7",
+    "mode": "todo",
+    "target": " build script",
+    "start": 2.71,
+    "duration": 0.54,
+    "rmeta_time": null,
+    "unlocked_units": [
+      42
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 38,
+    "name": "bare-metal",
+    "version": "0.2.5",
+    "mode": "todo",
+    "target": " lib (check)",
+    "start": 2.71,
+    "duration": 0.13,
+    "rmeta_time": 0.12,
+    "unlocked_units": [
+      39
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 39,
+    "name": "cortex-m",
+    "version": "0.7.7",
+    "mode": "todo",
+    "target": " lib (check)",
+    "start": 2.84,
+    "duration": 0.24,
+    "rmeta_time": 0.23,
+    "unlocked_units": [
+      41
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 40,
+    "name": "syn",
+    "version": "1.0.109",
+    "mode": "todo",
+    "target": "",
+    "start": 2.93,
+    "duration": 5.78,
+    "rmeta_time": 3.87,
+    "unlocked_units": [
+      44
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 41,
+    "name": "stm32-usbd",
+    "version": "0.6.0",
+    "mode": "todo",
+    "target": " lib (check)",
+    "start": 3.08,
+    "duration": 0.5,
+    "rmeta_time": 0.49,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 42,
+    "name": "cast",
+    "version": "0.2.7",
+    "mode": "run-custom-build",
+    "target": " build script (run)",
+    "start": 3.24,
+    "duration": 0.08,
+    "rmeta_time": null,
+    "unlocked_units": [
+      43
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 43,
+    "name": "cast",
+    "version": "0.2.7",
+    "mode": "todo",
+    "target": " lib (check)",
+    "start": 3.32,
+    "duration": 0.19,
+    "rmeta_time": 0.18,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 44,
+    "name": "cortex-m-rt-macros",
+    "version": "0.7.0",
+    "mode": "todo",
+    "target": "",
+    "start": 8.71,
+    "duration": 1.56,
+    "rmeta_time": null,
+    "unlocked_units": [
+      45
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 45,
+    "name": "cortex-m-rt",
+    "version": "0.7.3",
+    "mode": "todo",
+    "target": " lib (check)",
+    "start": 10.27,
+    "duration": 0.1,
+    "rmeta_time": 0.09,
+    "unlocked_units": [
+      46
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 46,
+    "name": "stm32f0",
+    "version": "0.14.0",
+    "mode": "todo",
+    "target": " lib (check)",
+    "start": 10.37,
+    "duration": 9.85,
+    "rmeta_time": 9.75,
+    "unlocked_units": [
+      47
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 47,
+    "name": "stm32f0xx-hal",
+    "version": "0.18.0",
+    "mode": "todo",
+    "target": " lib (doc)",
+    "start": 20.21,
+    "duration": 69.79,
+    "rmeta_time": null,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": []
+  }
+];
+const CONCURRENCY_DATA = [
+  {
+    "t": 0.370382168,
+    "active": 12,
+    "waiting": 5,
+    "inactive": 31,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.394581503,
+    "active": 12,
+    "waiting": 5,
+    "inactive": 31,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.396218966,
+    "active": 12,
+    "waiting": 5,
+    "inactive": 31,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.397116122,
+    "active": 12,
+    "waiting": 5,
+    "inactive": 31,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.546384414,
+    "active": 12,
+    "waiting": 5,
+    "inactive": 31,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.579471948,
+    "active": 12,
+    "waiting": 5,
+    "inactive": 30,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.579924649,
+    "active": 12,
+    "waiting": 5,
+    "inactive": 30,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.655578695,
+    "active": 12,
+    "waiting": 5,
+    "inactive": 30,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.699339646,
+    "active": 12,
+    "waiting": 5,
+    "inactive": 30,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.712446216,
+    "active": 12,
+    "waiting": 5,
+    "inactive": 29,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.715370296,
+    "active": 12,
+    "waiting": 5,
+    "inactive": 29,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.724015637,
+    "active": 12,
+    "waiting": 5,
+    "inactive": 29,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.736821636,
+    "active": 12,
+    "waiting": 3,
+    "inactive": 29,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.736905726,
+    "active": 12,
+    "waiting": 3,
+    "inactive": 29,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.737058075,
+    "active": 12,
+    "waiting": 3,
+    "inactive": 29,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.809699964,
+    "active": 12,
+    "waiting": 3,
+    "inactive": 29,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.823058903,
+    "active": 12,
+    "waiting": 2,
+    "inactive": 29,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.823501354,
+    "active": 12,
+    "waiting": 2,
+    "inactive": 29,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.872847225,
+    "active": 12,
+    "waiting": 2,
+    "inactive": 29,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.874558668,
+    "active": 12,
+    "waiting": 3,
+    "inactive": 28,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.888187551,
+    "active": 12,
+    "waiting": 3,
+    "inactive": 27,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.888565961,
+    "active": 12,
+    "waiting": 3,
+    "inactive": 27,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.941332274,
+    "active": 12,
+    "waiting": 3,
+    "inactive": 27,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.962177693,
+    "active": 12,
+    "waiting": 2,
+    "inactive": 27,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.962324291,
+    "active": 12,
+    "waiting": 2,
+    "inactive": 27,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.064644457,
+    "active": 12,
+    "waiting": 2,
+    "inactive": 27,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.084723011,
+    "active": 12,
+    "waiting": 1,
+    "inactive": 27,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.084856856,
+    "active": 12,
+    "waiting": 1,
+    "inactive": 27,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.274374564,
+    "active": 12,
+    "waiting": 1,
+    "inactive": 27,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.287473179,
+    "active": 12,
+    "waiting": 1,
+    "inactive": 26,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.2875990179999999,
+    "active": 12,
+    "waiting": 1,
+    "inactive": 26,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.395378518,
+    "active": 12,
+    "waiting": 1,
+    "inactive": 26,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.408756553,
+    "active": 12,
+    "waiting": 0,
+    "inactive": 26,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.410021138,
+    "active": 12,
+    "waiting": 0,
+    "inactive": 26,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.6272054580000002,
+    "active": 12,
+    "waiting": 0,
+    "inactive": 25,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.627985461,
+    "active": 12,
+    "waiting": 0,
+    "inactive": 25,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.631599652,
+    "active": 11,
+    "waiting": 0,
+    "inactive": 25,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.631806125,
+    "active": 11,
+    "waiting": 0,
+    "inactive": 25,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.638000713,
+    "active": 11,
+    "waiting": 0,
+    "inactive": 25,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.638091075,
+    "active": 11,
+    "waiting": 0,
+    "inactive": 25,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.638122815,
+    "active": 11,
+    "waiting": 0,
+    "inactive": 25,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.638151359,
+    "active": 11,
+    "waiting": 0,
+    "inactive": 25,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.638178821,
+    "active": 11,
+    "waiting": 0,
+    "inactive": 25,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.6382069449999999,
+    "active": 11,
+    "waiting": 0,
+    "inactive": 25,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.638235088,
+    "active": 11,
+    "waiting": 0,
+    "inactive": 25,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.638263522,
+    "active": 11,
+    "waiting": 0,
+    "inactive": 25,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.638292538,
+    "active": 11,
+    "waiting": 0,
+    "inactive": 25,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.6383206609999998,
+    "active": 11,
+    "waiting": 0,
+    "inactive": 25,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.692012234,
+    "active": 10,
+    "waiting": 0,
+    "inactive": 25,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.706778068,
+    "active": 10,
+    "waiting": 0,
+    "inactive": 24,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.706913887,
+    "active": 10,
+    "waiting": 0,
+    "inactive": 24,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.7101217659999999,
+    "active": 9,
+    "waiting": 0,
+    "inactive": 24,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.7134553540000002,
+    "active": 9,
+    "waiting": 1,
+    "inactive": 23,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.713735837,
+    "active": 10,
+    "waiting": 0,
+    "inactive": 23,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.713891583,
+    "active": 10,
+    "waiting": 0,
+    "inactive": 23,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.722447641,
+    "active": 10,
+    "waiting": 0,
+    "inactive": 22,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.722585052,
+    "active": 10,
+    "waiting": 0,
+    "inactive": 22,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.761750361,
+    "active": 10,
+    "waiting": 0,
+    "inactive": 21,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.762076727,
+    "active": 10,
+    "waiting": 0,
+    "inactive": 20,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.7650321359999999,
+    "active": 10,
+    "waiting": 0,
+    "inactive": 20,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.768216946,
+    "active": 9,
+    "waiting": 0,
+    "inactive": 19,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.768313349,
+    "active": 9,
+    "waiting": 0,
+    "inactive": 19,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.771213213,
+    "active": 8,
+    "waiting": 0,
+    "inactive": 19,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.7713916219999999,
+    "active": 8,
+    "waiting": 0,
+    "inactive": 19,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.771432399,
+    "active": 8,
+    "waiting": 0,
+    "inactive": 19,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.771459962,
+    "active": 8,
+    "waiting": 0,
+    "inactive": 19,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.829414405,
+    "active": 8,
+    "waiting": 0,
+    "inactive": 19,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.839665135,
+    "active": 8,
+    "waiting": 0,
+    "inactive": 18,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.8397716179999999,
+    "active": 8,
+    "waiting": 0,
+    "inactive": 18,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.839822394,
+    "active": 8,
+    "waiting": 0,
+    "inactive": 18,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.854794641,
+    "active": 7,
+    "waiting": 0,
+    "inactive": 18,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.8748654710000001,
+    "active": 6,
+    "waiting": 0,
+    "inactive": 18,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.880055419,
+    "active": 5,
+    "waiting": 0,
+    "inactive": 18,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.884453696,
+    "active": 5,
+    "waiting": 0,
+    "inactive": 17,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.884583112,
+    "active": 5,
+    "waiting": 0,
+    "inactive": 17,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.88968124,
+    "active": 5,
+    "waiting": 0,
+    "inactive": 16,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.889887362,
+    "active": 5,
+    "waiting": 0,
+    "inactive": 16,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.935519021,
+    "active": 5,
+    "waiting": 0,
+    "inactive": 16,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.965651496,
+    "active": 5,
+    "waiting": 0,
+    "inactive": 15,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.9659545920000001,
+    "active": 5,
+    "waiting": 0,
+    "inactive": 15,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.968938531,
+    "active": 4,
+    "waiting": 0,
+    "inactive": 15,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 2.058010678,
+    "active": 4,
+    "waiting": 0,
+    "inactive": 14,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 2.058154521,
+    "active": 4,
+    "waiting": 0,
+    "inactive": 14,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 2.236317436,
+    "active": 4,
+    "waiting": 1,
+    "inactive": 13,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 2.236661931,
+    "active": 5,
+    "waiting": 0,
+    "inactive": 13,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 2.236841487,
+    "active": 5,
+    "waiting": 0,
+    "inactive": 13,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 2.382439626,
+    "active": 4,
+    "waiting": 0,
+    "inactive": 13,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 2.428155255,
+    "active": 4,
+    "waiting": 0,
+    "inactive": 13,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 2.440340828,
+    "active": 3,
+    "waiting": 0,
+    "inactive": 13,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 2.517896614,
+    "active": 3,
+    "waiting": 0,
+    "inactive": 13,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 2.600525155,
+    "active": 3,
+    "waiting": 0,
+    "inactive": 12,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 2.6006204459999998,
+    "active": 3,
+    "waiting": 0,
+    "inactive": 12,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 2.609794013,
+    "active": 3,
+    "waiting": 1,
+    "inactive": 11,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 2.609930843,
+    "active": 4,
+    "waiting": 0,
+    "inactive": 11,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 2.610056732,
+    "active": 4,
+    "waiting": 0,
+    "inactive": 11,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 2.70671094,
+    "active": 4,
+    "waiting": 0,
+    "inactive": 10,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 2.706870724,
+    "active": 4,
+    "waiting": 0,
+    "inactive": 10,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 2.707974562,
+    "active": 4,
+    "waiting": 0,
+    "inactive": 9,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 2.708151919,
+    "active": 4,
+    "waiting": 0,
+    "inactive": 9,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 2.830149787,
+    "active": 4,
+    "waiting": 0,
+    "inactive": 9,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 2.838439123,
+    "active": 4,
+    "waiting": 0,
+    "inactive": 8,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 2.838667076,
+    "active": 4,
+    "waiting": 0,
+    "inactive": 8,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 2.928632397,
+    "active": 4,
+    "waiting": 1,
+    "inactive": 7,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 2.928874757,
+    "active": 4,
+    "waiting": 0,
+    "inactive": 7,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 2.929069007,
+    "active": 4,
+    "waiting": 0,
+    "inactive": 7,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 3.051103219,
+    "active": 3,
+    "waiting": 0,
+    "inactive": 7,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 3.066996005,
+    "active": 3,
+    "waiting": 0,
+    "inactive": 7,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 3.075085231,
+    "active": 3,
+    "waiting": 0,
+    "inactive": 6,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 3.075147248,
+    "active": 3,
+    "waiting": 0,
+    "inactive": 6,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 3.075322687,
+    "active": 3,
+    "waiting": 0,
+    "inactive": 6,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 3.242794239,
+    "active": 3,
+    "waiting": 0,
+    "inactive": 5,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 3.243000431,
+    "active": 3,
+    "waiting": 0,
+    "inactive": 5,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 3.322175405,
+    "active": 3,
+    "waiting": 0,
+    "inactive": 4,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 3.322270245,
+    "active": 3,
+    "waiting": 0,
+    "inactive": 4,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 3.505822246,
+    "active": 3,
+    "waiting": 0,
+    "inactive": 4,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 3.514220764,
+    "active": 2,
+    "waiting": 0,
+    "inactive": 4,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 3.561847887,
+    "active": 2,
+    "waiting": 0,
+    "inactive": 4,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 3.572170784,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 4,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 4.072444058,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 4,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 4.572710384,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 4,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 5.072991598,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 4,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 5.573261506,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 4,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 6.073559827,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 4,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 6.573869881,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 4,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 6.803816396,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 4,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 7.3041004449999996,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 4,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 7.804370073,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 4,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 8.30462657,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 4,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 8.710761911,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 3,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 8.71091922,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 3,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 9.211054677,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 3,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 9.711318998,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 3,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 10.211588531,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 3,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 10.270853987,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 2,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 10.271099258,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 2,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 10.361548989,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 2,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 10.367242539,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 1,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 10.367443171,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 1,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 10.867638226,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 1,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 11.367959647,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 1,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 11.86824847,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 1,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 12.368515247,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 1,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 12.868802838,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 1,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 13.369052137,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 1,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 13.86933541,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 1,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 14.369599336,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 1,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 14.869826077,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 1,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 15.370161003,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 1,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 15.870443183999999,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 1,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 16.370705823,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 1,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 16.87095691,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 1,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 17.37120715,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 1,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 17.871416628,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 1,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 18.37165739,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 1,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 18.87195451,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 1,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 19.372224322,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 1,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 19.872503097,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 1,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 20.121661113,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 1,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 20.213093848,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 20.213336705,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 20.713672332,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 21.213966031,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 21.714249639,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 22.214511196,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 22.714821095,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 23.215067823,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 23.715368685,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 24.215748116,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 24.716057173,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 24.848496544,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 25.348774426,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 25.849047831,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 26.349307363,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 26.849575538,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 27.349855925,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 27.85009516,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 28.350331318,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 28.850561676,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 29.35076674,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 29.850981568,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 30.35122484,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 30.851469495,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 31.351712061,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 31.851969384,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 32.352219234,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 32.852438966,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 33.352667756,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 33.852931882,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 34.353182814,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 34.853449926,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 35.353649365,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 35.85386287,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 36.354116597,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 36.854324237,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 37.35458395,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 37.854828013,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 38.355132993,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 38.855396423,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 39.355636975,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 39.8558581,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 40.3561583,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 40.856390772,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 41.356617848,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 41.856886313,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 42.357153405,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 42.857416099,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 43.357662808,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 43.857916475,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 44.358140405,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 44.858373708,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 45.358641848,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 45.858884819,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 46.359149547,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 46.859384433,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 47.359668663,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 47.860031362,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 48.36035156,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 48.860613097,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 49.36088029,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 49.861206675,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 50.361710672,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 50.862055387,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 51.362323221,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 51.862590493,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 52.362838059,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 52.863086536,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 53.363313116,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 53.863559268,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 54.363792456,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 54.864050381,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 55.364330213,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 55.86456608,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 56.365184186,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 56.865417955,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 57.365692816,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 57.865993913,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 58.366240813,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 58.86647888,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 59.366771696,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 59.867031795,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 60.367296432,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 60.867682376,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 61.367897304,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 61.868151512,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 62.368412027,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 62.868670447,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 63.3688982,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 63.869156035,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 64.369418994,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 64.8700166,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 65.370289123,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 65.870621714,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 66.370850369,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 66.871140154,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 67.371480937,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 67.871767797,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 68.372160868,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 68.872450814,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 69.372780806,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 69.872991371,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 70.373246686,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 70.873753599,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 71.374211554,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 71.874952973,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 72.375258765,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 72.875554161,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 73.375829874,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 73.876133371,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 74.376421694,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 74.876772225,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 75.37716725,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 75.877473056,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 76.377882048,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 76.878255808,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 77.378505292,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 77.878792363,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 78.379076748,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 78.879310527,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 79.379555497,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 79.879744977,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 80.380053252,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 80.880306629,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 81.38054703,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 81.880777252,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 82.381078424,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 82.881333844,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 83.381598898,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 83.881822738,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 84.382072553,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 84.882311882,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 85.382549854,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 85.882796097,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 86.383022031,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 86.88328206,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 87.383523383,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 87.883780146,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 88.384043501,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 88.884259877,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 89.384521539,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 89.884863373,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 90.005677421,
+    "active": 0,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  }
+];
+const CPU_USAGE = [
+  [
+    0.546396928,
+    83.47457627118644
+  ],
+  [
+    0.655580488,
+    97.70992366412214
+  ],
+  [
+    0.809702248,
+    96.89119170984456
+  ],
+  [
+    0.941334108,
+    94.15584415584415
+  ],
+  [
+    1.06464592,
+    89.1156462585034
+  ],
+  [
+    1.274377009,
+    81.81818181818181
+  ],
+  [
+    1.39537993,
+    70.83333333333333
+  ],
+  [
+    1.627205698,
+    86.42857142857143
+  ],
+  [
+    1.761751994,
+    90.0
+  ],
+  [
+    1.8748662230000002,
+    83.7037037037037
+  ],
+  [
+    2.058011029,
+    47.945205479452056
+  ],
+  [
+    2.23631963,
+    36.492890995260666
+  ],
+  [
+    2.38244177,
+    55.93220338983051
+  ],
+  [
+    2.517897746,
+    27.950310559006212
+  ],
+  [
+    2.706712312,
+    50.892857142857146
+  ],
+  [
+    2.830152502,
+    59.602649006622514
+  ],
+  [
+    3.051104872,
+    44.528301886792455
+  ],
+  [
+    3.242796954,
+    28.138528138528144
+  ],
+  [
+    3.505823999,
+    24.84076433121018
+  ],
+  [
+    4.072444879,
+    9.558823529411768
+  ],
+  [
+    4.572711255,
+    8.710217755443878
+  ],
+  [
+    5.07299251,
+    8.333333333333343
+  ],
+  [
+    5.573262608,
+    8.333333333333343
+  ],
+  [
+    6.073560679,
+    8.333333333333343
+  ],
+  [
+    6.573870773,
+    8.333333333333343
+  ],
+  [
+    6.803816907,
+    8.66425992779783
+  ],
+  [
+    7.304101347,
+    22.537562604340565
+  ],
+  [
+    7.804370905,
+    36.7109634551495
+  ],
+  [
+    8.304627752,
+    47.25457570715474
+  ],
+  [
+    8.71076668,
+    26.599999999999994
+  ],
+  [
+    9.211057402,
+    15.562913907284766
+  ],
+  [
+    9.7113198,
+    13.902847571189284
+  ],
+  [
+    10.211589372,
+    8.485856905158073
+  ],
+  [
+    10.361552906,
+    8.83977900552486
+  ],
+  [
+    10.867641542,
+    8.717105263157904
+  ],
+  [
+    11.367960548,
+    8.333333333333343
+  ],
+  [
+    11.868249322,
+    8.485856905158073
+  ],
+  [
+    12.368516579,
+    8.333333333333343
+  ],
+  [
+    12.86880375,
+    9.015025041736223
+  ],
+  [
+    13.369053058,
+    8.333333333333343
+  ],
+  [
+    13.869336292,
+    8.637873754152821
+  ],
+  [
+    14.369600338,
+    8.78938640132671
+  ],
+  [
+    14.869827009,
+    8.333333333333343
+  ],
+  [
+    15.370161855,
+    8.333333333333343
+  ],
+  [
+    15.870444116,
+    8.485856905158073
+  ],
+  [
+    16.370706755,
+    8.637873754152821
+  ],
+  [
+    16.870958112,
+    8.637873754152821
+  ],
+  [
+    17.371208102,
+    8.333333333333343
+  ],
+  [
+    17.87141751,
+    8.34724540901503
+  ],
+  [
+    18.371658282,
+    8.333333333333343
+  ],
+  [
+    18.871955341,
+    8.333333333333343
+  ],
+  [
+    19.372225214,
+    8.333333333333343
+  ],
+  [
+    19.872503988,
+    9.090909090909093
+  ],
+  [
+    20.121661634,
+    8.361204013377929
+  ],
+  [
+    20.713675318,
+    9.344490934449084
+  ],
+  [
+    21.213966932,
+    8.78938640132671
+  ],
+  [
+    21.714250521,
+    8.637873754152821
+  ],
+  [
+    22.214511978,
+    8.754208754208761
+  ],
+  [
+    22.714821966,
+    8.78938640132671
+  ],
+  [
+    23.215068685,
+    8.985024958402661
+  ],
+  [
+    23.715369576,
+    8.34724540901503
+  ],
+  [
+    24.215749038,
+    8.485856905158073
+  ],
+  [
+    24.716058395,
+    8.666666666666671
+  ],
+  [
+    24.848496904,
+    8.80503144654088
+  ],
+  [
+    25.348775378,
+    8.637873754152821
+  ],
+  [
+    25.849049033,
+    8.333333333333343
+  ],
+  [
+    26.349308205,
+    8.485856905158073
+  ],
+  [
+    26.84957645,
+    8.637873754152821
+  ],
+  [
+    27.349856747,
+    8.333333333333343
+  ],
+  [
+    27.850096142,
+    9.151414309484196
+  ],
+  [
+    28.35033226,
+    8.333333333333343
+  ],
+  [
+    28.850562508,
+    8.5
+  ],
+  [
+    29.350767632,
+    8.319467554076539
+  ],
+  [
+    29.85098241,
+    8.652246256239607
+  ],
+  [
+    30.351225671999998,
+    8.333333333333343
+  ],
+  [
+    30.851470717,
+    8.333333333333343
+  ],
+  [
+    31.351712992,
+    8.34724540901503
+  ],
+  [
+    31.851970196,
+    8.333333333333343
+  ],
+  [
+    32.352220166,
+    8.333333333333343
+  ],
+  [
+    32.852440148,
+    8.94039735099338
+  ],
+  [
+    33.352668828,
+    8.637873754152821
+  ],
+  [
+    33.852932734,
+    8.34724540901503
+  ],
+  [
+    34.353183686,
+    8.333333333333343
+  ],
+  [
+    34.853450818,
+    8.485856905158073
+  ],
+  [
+    35.353650157,
+    9.090909090909093
+  ],
+  [
+    35.853863752,
+    8.333333333333343
+  ],
+  [
+    36.354117629,
+    8.34724540901503
+  ],
+  [
+    36.854325058,
+    8.485856905158073
+  ],
+  [
+    37.354584882,
+    8.333333333333343
+  ],
+  [
+    37.854828865,
+    8.333333333333343
+  ],
+  [
+    38.355133985,
+    8.637873754152821
+  ],
+  [
+    38.855397305,
+    8.34724540901503
+  ],
+  [
+    39.355637897,
+    8.333333333333343
+  ],
+  [
+    39.855859232,
+    8.333333333333343
+  ],
+  [
+    40.356159393,
+    8.94039735099338
+  ],
+  [
+    40.856391804,
+    8.333333333333343
+  ],
+  [
+    41.35661866,
+    8.5
+  ],
+  [
+    41.856887335,
+    8.333333333333343
+  ],
+  [
+    42.357154317,
+    8.333333333333343
+  ],
+  [
+    42.857416991,
+    8.180300500834718
+  ],
+  [
+    43.3576638,
+    8.333333333333343
+  ],
+  [
+    43.857917407,
+    8.514190317195329
+  ],
+  [
+    44.358141356,
+    8.485856905158073
+  ],
+  [
+    44.85837483,
+    8.34724540901503
+  ],
+  [
+    45.358642619,
+    8.333333333333343
+  ],
+  [
+    45.85888572,
+    8.333333333333343
+  ],
+  [
+    46.359155798,
+    8.333333333333343
+  ],
+  [
+    46.859385325,
+    8.78938640132671
+  ],
+  [
+    47.359669584,
+    8.485856905158073
+  ],
+  [
+    47.860033055,
+    8.652246256239607
+  ],
+  [
+    48.360352522,
+    8.333333333333343
+  ],
+  [
+    48.860614009,
+    8.5
+  ],
+  [
+    49.360882824,
+    10.032894736842096
+  ],
+  [
+    49.861207586,
+    8.485856905158073
+  ],
+  [
+    50.361713658,
+    8.333333333333343
+  ],
+  [
+    50.862056289,
+    8.485856905158073
+  ],
+  [
+    51.362324123,
+    8.485856905158073
+  ],
+  [
+    51.862591385,
+    8.652246256239607
+  ],
+  [
+    52.362839191,
+    8.333333333333343
+  ],
+  [
+    52.863087307,
+    8.485856905158073
+  ],
+  [
+    53.363314028,
+    8.485856905158073
+  ],
+  [
+    53.8635601,
+    8.514190317195329
+  ],
+  [
+    54.363793158,
+    8.333333333333343
+  ],
+  [
+    54.864051333,
+    8.333333333333343
+  ],
+  [
+    55.364331355,
+    9.539473684210535
+  ],
+  [
+    55.864566902,
+    8.333333333333343
+  ],
+  [
+    56.365184987,
+    8.333333333333343
+  ],
+  [
+    56.865418746,
+    8.333333333333343
+  ],
+  [
+    57.365693648,
+    8.333333333333343
+  ],
+  [
+    57.865994725,
+    8.5
+  ],
+  [
+    58.366241724,
+    8.485856905158073
+  ],
+  [
+    58.866479872,
+    9.437086092715234
+  ],
+  [
+    59.366773028,
+    8.333333333333343
+  ],
+  [
+    59.867032686,
+    8.333333333333343
+  ],
+  [
+    60.367297344,
+    8.333333333333343
+  ],
+  [
+    60.867683157,
+    8.485856905158073
+  ],
+  [
+    61.367898226,
+    8.333333333333343
+  ],
+  [
+    61.868152313,
+    8.34724540901503
+  ],
+  [
+    62.368412878,
+    8.333333333333343
+  ],
+  [
+    62.868671339,
+    8.637873754152821
+  ],
+  [
+    63.368899101,
+    8.333333333333343
+  ],
+  [
+    63.869156907,
+    10.29900332225914
+  ],
+  [
+    64.369419786,
+    8.637873754152821
+  ],
+  [
+    64.870017492,
+    8.78938640132671
+  ],
+  [
+    65.370290054,
+    8.485856905158073
+  ],
+  [
+    65.870622586,
+    8.333333333333343
+  ],
+  [
+    66.37085118,
+    8.333333333333343
+  ],
+  [
+    66.871141256,
+    9.090909090909093
+  ],
+  [
+    67.371481778,
+    8.333333333333343
+  ],
+  [
+    67.871768889,
+    8.666666666666671
+  ],
+  [
+    68.372173051,
+    8.485856905158073
+  ],
+  [
+    68.872451966,
+    11.22112211221122
+  ],
+  [
+    69.372781628,
+    8.34724540901503
+  ],
+  [
+    69.872992213,
+    8.333333333333343
+  ],
+  [
+    70.373247587,
+    8.485856905158073
+  ],
+  [
+    70.873754391,
+    8.485856905158073
+  ],
+  [
+    71.374212717,
+    9.390444810543656
+  ],
+  [
+    71.874954256,
+    9.240924092409244
+  ],
+  [
+    72.375259897,
+    8.333333333333343
+  ],
+  [
+    72.875555433,
+    8.5
+  ],
+  [
+    73.375831367,
+    9.240924092409244
+  ],
+  [
+    73.876135655,
+    8.34724540901503
+  ],
+  [
+    74.376422736,
+    11.442786069651746
+  ],
+  [
+    74.876772996,
+    8.652246256239607
+  ],
+  [
+    75.377168623,
+    8.485856905158073
+  ],
+  [
+    75.877474028,
+    8.333333333333343
+  ],
+  [
+    76.377884924,
+    8.637873754152821
+  ],
+  [
+    76.87825667,
+    8.485856905158073
+  ],
+  [
+    77.378506094,
+    8.333333333333343
+  ],
+  [
+    77.878793384,
+    8.652246256239607
+  ],
+  [
+    78.379077589,
+    8.333333333333343
+  ],
+  [
+    78.879311338,
+    8.34724540901503
+  ],
+  [
+    79.37955671899999,
+    14.30921052631578
+  ],
+  [
+    79.879745848,
+    20.757825370675448
+  ],
+  [
+    80.380054264,
+    19.836065573770483
+  ],
+  [
+    80.88030748,
+    13.5
+  ],
+  [
+    81.380547992,
+    8.666666666666671
+  ],
+  [
+    81.880778014,
+    8.34724540901503
+  ],
+  [
+    82.381079907,
+    8.333333333333343
+  ],
+  [
+    82.881334726,
+    8.34724540901503
+  ],
+  [
+    83.38159978,
+    8.333333333333343
+  ],
+  [
+    83.881824131,
+    8.5
+  ],
+  [
+    84.382073304,
+    9.68280467445743
+  ],
+  [
+    84.882312794,
+    8.333333333333343
+  ],
+  [
+    85.382550656,
+    8.333333333333343
+  ],
+  [
+    85.882796989,
+    8.652246256239607
+  ],
+  [
+    86.383023213,
+    8.485856905158073
+  ],
+  [
+    86.883282881,
+    8.485856905158073
+  ],
+  [
+    87.383524265,
+    8.333333333333343
+  ],
+  [
+    87.883780917,
+    8.180300500834718
+  ],
+  [
+    88.384044323,
+    8.34724540901503
+  ],
+  [
+    88.88426167,
+    8.333333333333343
+  ],
+  [
+    89.38452224,
+    8.333333333333343
+  ],
+  [
+    89.884864325,
+    10.350584307178636
+  ]
+];
+// Position of the vertical axis.
+const X_LINE = 50;
+// General-use margin size.
+const MARGIN = 5;
+// Position of the horizontal axis, relative to the bottom.
+const Y_LINE = 35;
+// Minimum distance between time tick labels.
+const MIN_TICK_DIST = 50;
+// Radius for rounded rectangle corners.
+const RADIUS = 3;
+// Height of unit boxes.
+const BOX_HEIGHT = 25;
+// Distance between Y tick marks on the unit graph.
+const Y_TICK_DIST = BOX_HEIGHT + 2;
+// Rects used for mouseover detection.
+// Objects of {x, y, x2, y2, i} where `i` is the index into UNIT_DATA.
+let HIT_BOXES = [];
+// Index into UNIT_DATA of the last unit hovered over by mouse.
+let LAST_HOVER = null;
+// Key is unit index, value is {x, y, width, rmeta_x} of the box.
+let UNIT_COORDS = {};
+// Map of unit index to the index it was unlocked by.
+let REVERSE_UNIT_DEPS = {};
+let REVERSE_UNIT_RMETA_DEPS = {};
+for (let n=0; n<UNIT_DATA.length; n++) {
+  let unit = UNIT_DATA[n];
+  for (let unlocked of unit.unlocked_units) {
+    REVERSE_UNIT_DEPS[unlocked] = n;
+  }
+  for (let unlocked of unit.unlocked_rmeta_units) {
+    REVERSE_UNIT_RMETA_DEPS[unlocked] = n;
+  }
+}
+
+function render_pipeline_graph() {
+  if (UNIT_DATA.length == 0) {
+    return;
+  }
+  let g = document.getElementById('pipeline-graph');
+  HIT_BOXES.length = 0;
+  g.onmousemove = pipeline_mousemove;
+  const min_time = document.getElementById('min-unit-time').valueAsNumber;
+
+  const units = UNIT_DATA.filter(unit => unit.duration >= min_time);
+
+  const graph_height = Y_TICK_DIST * units.length;
+  const {ctx, graph_width, canvas_width, canvas_height, px_per_sec} = draw_graph_axes('pipeline-graph', graph_height);
+  const container = document.getElementById('pipeline-container');
+  container.style.width = canvas_width;
+  container.style.height = canvas_height;
+
+  // Canvas for hover highlights. This is a separate layer to improve performance.
+  const linectx = setup_canvas('pipeline-graph-lines', canvas_width, canvas_height);
+  linectx.clearRect(0, 0, canvas_width, canvas_height);
+
+  // Draw Y tick marks.
+  for (let n=1; n<units.length; n++) {
+    const y = MARGIN + Y_TICK_DIST * n;
+    ctx.beginPath();
+    ctx.moveTo(X_LINE, y);
+    ctx.lineTo(X_LINE-5, y);
+    ctx.stroke();
+  }
+
+  // Draw Y labels.
+  ctx.textAlign = 'end';
+  ctx.textBaseline = 'middle';
+  for (let n=0; n<units.length; n++) {
+    let y = MARGIN + Y_TICK_DIST * n + Y_TICK_DIST / 2;
+    ctx.fillText(n+1, X_LINE-4, y);
+  }
+
+  // Draw the graph.
+  ctx.save();
+  ctx.translate(X_LINE, MARGIN);
+
+  // Compute x,y coordinate of each block.
+  UNIT_COORDS = {};
+  for (i=0; i<units.length; i++) {
+    let unit = units[i];
+    let y = i * Y_TICK_DIST + 1;
+    let x = px_per_sec * unit.start;
+    let rmeta_x = null;
+    if (unit.rmeta_time != null) {
+      rmeta_x = x + px_per_sec * unit.rmeta_time;
+    }
+    let width = Math.max(px_per_sec * unit.duration, 1.0);
+    UNIT_COORDS[unit.i] = {x, y, width, rmeta_x};
+  }
+
+  // Draw the blocks.
+  for (i=0; i<units.length; i++) {
+    let unit = units[i];
+    let {x, y, width, rmeta_x} = UNIT_COORDS[unit.i];
+
+    HIT_BOXES.push({x: X_LINE+x, y:MARGIN+y, x2: X_LINE+x+width, y2: MARGIN+y+BOX_HEIGHT, i: unit.i});
+
+    ctx.beginPath();
+    ctx.fillStyle = unit.mode == 'run-custom-build' ? '#f0b165' : '#95cce8';
+    roundedRect(ctx, x, y, width, BOX_HEIGHT, RADIUS);
+    ctx.fill();
+
+    if (unit.rmeta_time != null) {
+      ctx.beginPath();
+      ctx.fillStyle = '#aa95e8';
+      let ctime = unit.duration - unit.rmeta_time;
+      roundedRect(ctx, rmeta_x, y, px_per_sec * ctime, BOX_HEIGHT, RADIUS);
+      ctx.fill();
+    }
+    ctx.fillStyle = "#000";
+    ctx.textAlign = 'start';
+    ctx.textBaseline = 'middle';
+    ctx.font = '14px sans-serif';
+    const label = `${unit.name}${unit.target} ${unit.duration}s`;
+    const text_info = ctx.measureText(label);
+    const label_x = Math.min(x + 5.0, canvas_width - text_info.width - X_LINE);
+    ctx.fillText(label, label_x, y + BOX_HEIGHT / 2);
+    draw_dep_lines(ctx, unit.i, false);
+  }
+  ctx.restore();
+}
+
+// Draws lines from the given unit to the units it unlocks.
+function draw_dep_lines(ctx, unit_idx, highlighted) {
+  const unit = UNIT_DATA[unit_idx];
+  const {x, y, rmeta_x} = UNIT_COORDS[unit_idx];
+  ctx.save();
+  for (const unlocked of unit.unlocked_units) {
+    draw_one_dep_line(ctx, x, y, unlocked, highlighted);
+  }
+  for (const unlocked of unit.unlocked_rmeta_units) {
+    draw_one_dep_line(ctx, rmeta_x, y, unlocked, highlighted);
+  }
+  ctx.restore();
+}
+
+function draw_one_dep_line(ctx, from_x, from_y, to_unit, highlighted) {
+  if (to_unit in UNIT_COORDS) {
+    let {x: u_x, y: u_y} = UNIT_COORDS[to_unit];
+    ctx.strokeStyle = highlighted ? '#000' : '#ddd';
+    ctx.setLineDash([2]);
+    ctx.beginPath();
+    ctx.moveTo(from_x, from_y+BOX_HEIGHT/2);
+    ctx.lineTo(from_x-5, from_y+BOX_HEIGHT/2);
+    ctx.lineTo(from_x-5, u_y+BOX_HEIGHT/2);
+    ctx.lineTo(u_x, u_y+BOX_HEIGHT/2);
+    ctx.stroke();
+  }
+}
+
+function render_timing_graph() {
+  if (CONCURRENCY_DATA.length == 0) {
+    return;
+  }
+  const HEIGHT = 400;
+  const AXIS_HEIGHT = HEIGHT - MARGIN - Y_LINE;
+  const TOP_MARGIN = 10;
+  const GRAPH_HEIGHT = AXIS_HEIGHT - TOP_MARGIN;
+
+  const {canvas_width, graph_width, ctx} = draw_graph_axes('timing-graph', AXIS_HEIGHT);
+
+  // Draw Y tick marks and labels.
+  let max_v = 0;
+  for (c of CONCURRENCY_DATA) {
+    max_v = Math.max(max_v, c.active, c.waiting, c.inactive);
+  }
+  const px_per_v = GRAPH_HEIGHT / max_v;
+  const {step, tick_dist, num_ticks} = split_ticks(max_v, px_per_v, GRAPH_HEIGHT);
+  ctx.textAlign = 'end';
+  for (n=0; n<num_ticks; n++) {
+    let y = HEIGHT - Y_LINE - ((n + 1) * tick_dist);
+    ctx.beginPath();
+    ctx.moveTo(X_LINE, y);
+    ctx.lineTo(X_LINE-5, y);
+    ctx.stroke();
+    ctx.fillText((n+1) * step, X_LINE-10, y+5);
+  }
+
+  // Label the Y axis.
+  let label_y = (HEIGHT - Y_LINE) / 2;
+  ctx.save();
+  ctx.translate(15, label_y);
+  ctx.rotate(3*Math.PI/2);
+  ctx.textAlign = 'center';
+  ctx.fillText('# Units', 0, 0);
+  ctx.restore();
+
+  // Draw the graph.
+  ctx.save();
+  ctx.translate(X_LINE, MARGIN);
+
+  function coord(t, v) {
+    return {
+      x: graph_width * (t/DURATION),
+      y: TOP_MARGIN + GRAPH_HEIGHT * (1.0 - (v / max_v))
+    };
+  }
+
+  const cpuFillStyle = 'rgba(250, 119, 0, 0.2)';
+  if (CPU_USAGE.length > 1) {
+    ctx.beginPath();
+    ctx.fillStyle = cpuFillStyle;
+    let bottomLeft = coord(CPU_USAGE[0][0], 0);
+    ctx.moveTo(bottomLeft.x, bottomLeft.y);
+    for (let i=0; i < CPU_USAGE.length; i++) {
+      let [time, usage] = CPU_USAGE[i];
+      let {x, y} = coord(time, usage / 100.0 * max_v);
+      ctx.lineTo(x, y);
+    }
+    let bottomRight = coord(CPU_USAGE[CPU_USAGE.length - 1][0], 0);
+    ctx.lineTo(bottomRight.x, bottomRight.y);
+    ctx.fill();
+  }
+
+  function draw_line(style, key) {
+    let first = CONCURRENCY_DATA[0];
+    let last = coord(first.t, key(first));
+    ctx.strokeStyle = style;
+    ctx.beginPath();
+    ctx.moveTo(last.x, last.y);
+    for (let i=1; i<CONCURRENCY_DATA.length; i++) {
+      let c = CONCURRENCY_DATA[i];
+      let {x, y} = coord(c.t, key(c));
+      ctx.lineTo(x, last.y);
+      ctx.lineTo(x, y);
+      last = {x, y};
+    }
+    ctx.stroke();
+  }
+
+  draw_line('blue', function(c) {return c.inactive;});
+  draw_line('red', function(c) {return c.waiting;});
+  draw_line('green', function(c) {return c.active;});
+
+  // Draw a legend.
+  ctx.restore();
+  ctx.save();
+  ctx.translate(canvas_width-200, MARGIN);
+  // background
+  ctx.fillStyle = '#fff';
+  ctx.strokeStyle = '#000';
+  ctx.lineWidth = 1;
+  ctx.textBaseline = 'middle'
+  ctx.textAlign = 'start';
+  ctx.beginPath();
+  ctx.rect(0, 0, 150, 82);
+  ctx.stroke();
+  ctx.fill();
+
+  ctx.fillStyle = '#000'
+  ctx.beginPath();
+  ctx.lineWidth = 2;
+  ctx.strokeStyle = 'red';
+  ctx.moveTo(5, 10);
+  ctx.lineTo(50, 10);
+  ctx.stroke();
+  ctx.fillText('Waiting', 54, 11);
+
+  ctx.beginPath();
+  ctx.strokeStyle = 'blue';
+  ctx.moveTo(5, 30);
+  ctx.lineTo(50, 30);
+  ctx.stroke();
+  ctx.fillText('Inactive', 54, 31);
+
+  ctx.beginPath();
+  ctx.strokeStyle = 'green';
+  ctx.moveTo(5, 50);
+  ctx.lineTo(50, 50);
+  ctx.stroke();
+  ctx.fillText('Active', 54, 51);
+
+  ctx.beginPath();
+  ctx.fillStyle = cpuFillStyle
+  ctx.fillRect(15, 60, 30, 15);
+  ctx.fill();
+  ctx.fillStyle = 'black';
+  ctx.fillText('CPU Usage', 54, 71);
+
+  ctx.restore();
+}
+
+function setup_canvas(id, width, height) {
+  let g = document.getElementById(id);
+  let dpr = window.devicePixelRatio || 1;
+  g.width = width * dpr;
+  g.height = height * dpr;
+  g.style.width = width;
+  g.style.height = height;
+  let ctx = g.getContext('2d');
+  ctx.scale(dpr, dpr);
+  return ctx;
+}
+
+function draw_graph_axes(id, graph_height) {
+  const scale = document.getElementById('scale').valueAsNumber;
+  // Cap the size of the graph. It is hard to view if it is too large, and
+  // browsers may not render a large graph because it takes too much memory.
+  // 4096 is still ridiculously large, and probably won't render on mobile
+  // browsers, but should be ok for many desktop environments.
+  const graph_width = Math.min(scale * DURATION, 4096);
+  const px_per_sec = graph_width / DURATION;
+  const canvas_width = Math.max(graph_width + X_LINE + 30, X_LINE + 250);
+  const canvas_height = graph_height + MARGIN + Y_LINE;
+  let ctx = setup_canvas(id, canvas_width, canvas_height);
+  ctx.fillStyle = '#f7f7f7';
+  ctx.fillRect(0, 0, canvas_width, canvas_height);
+
+  ctx.lineWidth = 2;
+  ctx.font = '16px sans-serif';
+  ctx.textAlign = 'center';
+
+  // Draw main axes.
+  ctx.beginPath();
+  ctx.moveTo(X_LINE, MARGIN);
+  ctx.lineTo(X_LINE, graph_height + MARGIN);
+  ctx.lineTo(X_LINE+graph_width+20, graph_height + MARGIN);
+  ctx.stroke();
+
+  // Draw X tick marks.
+  const {step, tick_dist, num_ticks} = split_ticks(DURATION, px_per_sec, graph_width);
+  ctx.fillStyle = '#303030';
+  for (let n=0; n<num_ticks; n++) {
+    const x = X_LINE + ((n + 1) * tick_dist);
+    ctx.beginPath();
+    ctx.moveTo(x, canvas_height-Y_LINE);
+    ctx.lineTo(x, canvas_height-Y_LINE+5);
+    ctx.stroke();
+
+    ctx.fillText(`${(n+1) * step}s`, x, canvas_height - Y_LINE + 20);
+  }
+
+  // Draw vertical lines.
+  ctx.strokeStyle = '#e6e6e6';
+  ctx.setLineDash([2, 4]);
+  for (n=0; n<num_ticks; n++) {
+    const x = X_LINE + ((n + 1) * tick_dist);
+    ctx.beginPath();
+    ctx.moveTo(x, MARGIN);
+    ctx.lineTo(x, MARGIN+graph_height);
+    ctx.stroke();
+  }
+  ctx.strokeStyle = '#000';
+  ctx.setLineDash([]);
+  return {canvas_width, canvas_height, graph_width, graph_height, ctx, px_per_sec};
+}
+
+// Determine the spacing and number of ticks along an axis.
+function split_ticks(max_value, px_per_v, max_px) {
+  const max_ticks = Math.floor(max_px / MIN_TICK_DIST);
+  if (max_ticks <= 1) {
+    // Graph is too small for even 1 tick.
+    return {step: max_value, tick_dist: max_px, num_ticks: 1};
+  }
+  let step;
+  if (max_value <= max_ticks) {
+    step = 1;
+  } else if (max_value <= max_ticks * 2) {
+    step = 2;
+  } else if (max_value <= max_ticks * 4) {
+    step = 4;
+  } else if (max_value <= max_ticks * 5) {
+    step = 5;
+  } else {
+    step = 10;
+    let count = 0;
+    while (true) {
+      if (count > 100) {
+        throw Error("tick loop too long");
+      }
+      count += 1;
+      if (max_value <= max_ticks * step) {
+        break;
+      }
+      step += 10;
+    }
+  }
+  const tick_dist = px_per_v * step;
+  const num_ticks = Math.floor(max_value / step);
+  return {step, tick_dist, num_ticks};
+}
+
+function codegen_time(unit) {
+  if (unit.rmeta_time == null) {
+    return null;
+  }
+  let ctime = unit.duration - unit.rmeta_time;
+  return [unit.rmeta_time, ctime];
+}
+
+function roundedRect(ctx, x, y, width, height, r) {
+  r = Math.min(r, width, height);
+  ctx.beginPath();
+  ctx.moveTo(x+r, y);
+  ctx.lineTo(x+width-r, y);
+  ctx.arc(x+width-r, y+r, r, 3*Math.PI/2, 0);
+  ctx.lineTo(x+width, y+height-r);
+  ctx.arc(x+width-r, y+height-r, r, 0, Math.PI/2);
+  ctx.lineTo(x+r, y+height);
+  ctx.arc(x+r, y+height-r, r, Math.PI/2, Math.PI);
+  ctx.lineTo(x, y-r);
+  ctx.arc(x+r, y+r, r, Math.PI, 3*Math.PI/2);
+  ctx.closePath();
+}
+
+function pipeline_mouse_hit(event) {
+  // This brute-force method can be optimized if needed.
+  for (let box of HIT_BOXES) {
+    if (event.offsetX >= box.x && event.offsetX <= box.x2 &&
+        event.offsetY >= box.y && event.offsetY <= box.y2) {
+      return box;
+    }
+  }
+}
+
+function pipeline_mousemove(event) {
+  // Highlight dependency lines on mouse hover.
+  let box = pipeline_mouse_hit(event);
+  if (box) {
+    if (box.i != LAST_HOVER) {
+      LAST_HOVER = box.i;
+      let g = document.getElementById('pipeline-graph-lines');
+      let ctx = g.getContext('2d');
+      ctx.clearRect(0, 0, g.width, g.height);
+      ctx.save();
+      ctx.translate(X_LINE, MARGIN);
+      ctx.lineWidth = 2;
+      draw_dep_lines(ctx, box.i, true);
+
+      if (box.i in REVERSE_UNIT_DEPS) {
+        const dep_unit = REVERSE_UNIT_DEPS[box.i];
+        if (dep_unit in UNIT_COORDS) {
+          const {x, y, rmeta_x} = UNIT_COORDS[dep_unit];
+          draw_one_dep_line(ctx, x, y, box.i, true);
+        }
+      }
+      if (box.i in REVERSE_UNIT_RMETA_DEPS) {
+        const dep_unit = REVERSE_UNIT_RMETA_DEPS[box.i];
+        if (dep_unit in UNIT_COORDS) {
+          const {x, y, rmeta_x} = UNIT_COORDS[dep_unit];
+          draw_one_dep_line(ctx, rmeta_x, y, box.i, true);
+        }
+      }
+      ctx.restore();
+    }
+  }
+}
+
+render_pipeline_graph();
+render_timing_graph();
+
+// Set up and handle controls.
+{
+  const range = document.getElementById('min-unit-time');
+  const time_output = document.getElementById('min-unit-time-output');
+  time_output.innerHTML = `${range.value}s`;
+  range.oninput = event => {
+    time_output.innerHTML = `${range.value}s`;
+    render_pipeline_graph();
+  };
+
+  const scale = document.getElementById('scale');
+  const scale_output = document.getElementById('scale-output');
+  scale_output.innerHTML = `${scale.value}`;
+  scale.oninput = event => {
+    scale_output.innerHTML = `${scale.value}`;
+    render_pipeline_graph();
+    render_timing_graph();
+  };
+}
+
+</script>
+</body>
+</html>
